@@ -35,6 +35,12 @@ void entities_setAnimation(Entities_List* list, int32_t i, int32_t animation) {
     if (list->currentAnimation[i] == animation) {
         return;
     }
+    else
+    {
+        if (animation < 0 || animation >= list->sprite->numAnimations) {
+            return;
+        }
+    }
 
     list->currentAnimation[i] = animation;
     list->animationTick[i] = 0;
