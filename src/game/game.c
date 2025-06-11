@@ -813,7 +813,15 @@ static void mainGame(float elapsedTime) {
                 player->invincibleTimer = PLAYER_INVINCIBLE_TIME;
                 player->alpha[0] = PLAYER_INVINCIBLE_ALPHA;
             }
-        } else {
+        }
+        else if( player->invincibleTimer > 0.0f) {
+            player->invincibleTimer -= elapsedTime;
+            if (player->invincibleTimer < 0.0f) {
+                player->alpha[0] = 1.0f;
+            }
+        }
+        
+        else {
             simPlayer(elapsedTime);           
         }
 
@@ -863,14 +871,14 @@ static void gameOver(float elapsedTime) {
             .scale = 0.4f
         }); 
     }
-    else
-    {
-        if(events_gameOverRestartSequence.complete)
-        {
-            evenets_gameOverRestartSequence.running=false;
-            events_gameOverRestartSequence.complete=false;
-        }
-    }
+    // else
+    // {
+    //     if(events_gameOverRestartSequence.complete)
+    //     {
+    //         evenets_gameOverRestartSequence.running=false;
+    //         events_gameOverRestartSequence.complete=false;
+    //     }
+    // }
 
     updateScoreDisplay();
     updateAnimations();
