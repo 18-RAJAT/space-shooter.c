@@ -863,6 +863,14 @@ static void gameOver(float elapsedTime) {
             .scale = 0.4f
         }); 
     }
+    else
+    {
+        if(events_gameOverRestartSequence.complete)
+        {
+            evenets_gameOverRestartSequence.running=false;
+            events_gameOverRestartSequence.complete=false;
+        }
+    }
 
     updateScoreDisplay();
     updateAnimations();
